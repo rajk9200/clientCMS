@@ -3,10 +3,21 @@ from cms import api
 from cms.views import subject,group,student,mark,teacher
 from cms import db
 from flask import send_from_directory
+from flask import render_template
+from cms import models
+@app.route('/login')
+def login_view():
+    return render_template('login.html')
+
 @app.route('/')
 def index():
-    return "welcome to my website"
+    groups =models.Groups.query.all()
+    print(groups)
+    return render_template('index.html',groups=groups)
 # subjects crud
+
+
+
 @app.route('/create_tables')
 def ctables():
     db.create_all()
