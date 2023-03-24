@@ -81,4 +81,20 @@ class MarkById(Resource):
 
 
 
+class GetMarkByStudentID(Resource):
+    def get(self):
+        context={}
+        student_id=request.args.get('student_id')
+        mark_list = Mark.query.filter(Student.student_id==student_id).all()
+        print(mark_list)
+
+        if mark_list:
+            result = mark_people_schema.dump(mark_list)
+            context['list'] = result.data
+            context['records'] = len(result.data)
+        else:
+            abort(404,"No Record Found.")
+        return jsonify(context)
+
+
 

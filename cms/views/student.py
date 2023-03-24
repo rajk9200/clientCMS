@@ -21,7 +21,6 @@ class StudentView(Resource):
         last_name = request.json.get('last_name')
         group_id = request.json.get('group_id')
         group = Groups.query.get(group_id)
-        print(group)
         sub = Student(first_name=first_name,last_name=last_name,group_id=group_id)
         db.session.add(sub)
         db.session.commit()

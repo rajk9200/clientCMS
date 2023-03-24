@@ -39,6 +39,14 @@ class Mark(db.Model):
 
 
 
+class Teacher(db.Model):
+    teacher_id = db.Column(db.Integer, primary_key=True)
+    subject_id = db.Column(db.Integer, db.ForeignKey('subjects.subject_id'),
+                           nullable=True)
+    group_id = db.Column(db.Integer, db.ForeignKey('groups.group_id'),
+                         nullable=True)
+    groups = db.relationship("Groups", foreign_keys=[group_id])
+    subject = db.relationship("Subjects", foreign_keys=[subject_id])
 
 
 

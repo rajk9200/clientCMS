@@ -24,8 +24,8 @@ class GroupView(Resource):
         sub = Groups(name=name)
         db.session.add(sub)
         db.session.commit()
-        context['message'] = f"{name} subject Added successfully."
-        return Response(context=[],status=201)
+        context['message'] = f"{name} Subject Added successfully."
+        return jsonify(context)
 
 class GroupsById(Resource):
     def get(self,id=None):
